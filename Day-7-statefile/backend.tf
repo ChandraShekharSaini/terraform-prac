@@ -3,7 +3,9 @@ terraform {
     bucket = "amz-chandra-saini"
     key    = "terraform.tfstate"
     region = "us-east-1"
-     dynamodb_table = "chandra"
+    dynamodb_table = "chandra-saini-lock"
+   ## use_lockfile ="true"
+   
   }
 }
 
