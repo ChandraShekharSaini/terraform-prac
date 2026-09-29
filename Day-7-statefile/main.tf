@@ -2,7 +2,7 @@ resource "aws_vpc" "my_vpc" {
   cidr_block = "10.0.0.0/16"
 
   tags = {
-    Name = "My-Vpc"
+    Name = "My-Vpc-1"
   }
 }
 resource "aws_security_group" "my_sg" {
@@ -42,7 +42,7 @@ resource "aws_subnet" "public_subnet-1a" {
   }
 }
 
-resource "aws_instance" "public_server_1a"{
+resource "aws_instance" "public_1server_1a"{
   ami           = "ami-0c02fb55956c7d316"
   instance_type = "t2.medium"
   subnet_id     = aws_subnet.public_subnet-1a.id
@@ -50,6 +50,17 @@ resource "aws_instance" "public_server_1a"{
 
   tags = {
     Name = "public-server11-1a"
+  }
+}
+
+resource "aws_instance" "public_2server_1a"{
+  ami           = "ami-0c02fb55956c7d316"
+  instance_type = "t2.medium"
+  subnet_id     = aws_subnet.public_subnet-1a.id
+  security_groups = [aws_security_group.my_sg.id]
+
+  tags = {
+    Name = "public-server11-2a"
   }
 }
 
