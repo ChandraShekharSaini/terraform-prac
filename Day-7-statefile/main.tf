@@ -55,3 +55,11 @@ resource "aws_instance" "public_server_1a"{
     Name = "public-server11-1a"
   }
 }
+
+resource "aws_vpc" "my_vpc_2" {
+  cidr_block = "10.1.0.0/16"
+
+  tags = {
+    Name = "My-Vpc-2"
+  }
+}
