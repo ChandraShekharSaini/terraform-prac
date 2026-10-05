@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frosty Bliss - Ice Cream</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #fff8f5;
+            color: #3b2630;
+        }
+
+        /* Navbar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 7%;
+            background: #ffffff;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 800;
+            color: #ff5f8f;
+        }
+
+        .logo span {
+            color: #6c63ff;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #3b2630;
+            font-weight: 600;
+        }
+
+        nav ul li a:hover {
+            color: #ff5f8f;
+        }
+
+        .nav-btn {
+            background: #ff5f8f;
+            color: white;
+            padding: 11px 22px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 620px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 70px 8%;
+            background: linear-gradient(135deg, #ffe2ec, #fff6d9);
+            overflow: hidden;
+        }
+
+        .hero-content {
+            width: 50%;
+        }
+
+        .hero-content small {
+            color: #ff4f85;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .hero-content h1 {
+            font-size: 64px;
+            line-height: 1.05;
+            margin: 18px 0;
+        }
+
+        .hero-content h1 span {
+            color: #ff5f8f;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: #66545c;
+            max-width: 520px;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .primary-btn,
+        .secondary-btn {
+            padding: 15px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .primary-btn {
+            background: #ff5f8f;
+            color: white;
+            box-shadow: 0 8px 20px rgba(255,95,143,0.3);
+        }
+
+        .secondary-btn {
+            background: white;
+            color: #ff5f8f;
+            border: 2px solid #ff5f8f;
+        }
+
+        .hero-image {
+            width: 45%;
+            text-align: center;
+            font-size: 230px;
+            filter: drop-shadow(0 25px 20px rgba(0,0,0,0.15));
+        }
+
+        /* Section */
+        .section {
+            padding: 80px 8%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .section-title p {
+            color: #806b73;
+        }
+
+        /* Flavors */
+        .flavors {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+        }
+
+        .flavor-card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 25px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(75,40,50,0.08);
+            transition: 0.3s;
+        }
+
+        .flavor-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .flavor-icon {
+            font-size: 75px;
+            margin-bottom: 15px;
+        }
+
+        .flavor-card h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .flavor-card p {
+            color: #88757d;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Products */
+        .products {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(75,40,50,0.08);
+        }
+
+        .product-top {
+            background: #ffe6ef;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 120px;
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-info h3 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        .rating {
+            color: #ffb400;
+            margin: 8px 0;
+        }
+
+        .product-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 18px;
+        }
+
+        .price {
+            font-size: 24px;
+            font-weight: 800;
+            color: #ff5f8f;
+        }
+
+        .buy-btn {
+            background: #6c63ff;
+            color: white;
+            border: none;
+            padding: 11px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Offer */
+        .offer {
+            margin: 30px 8% 80px;
+            border-radius: 30px;
+            padding: 55px;
+            background: linear-gradient(120deg, #6c63ff, #ff5f8f);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .offer h2 {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .offer p {
+            opacity: 0.9;
+        }
+
+        .offer-btn {
+            background: white;
+            color: #ff5f8f;
+            padding: 15px 28px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            background: #291d25;
+            color: white;
+            padding: 45px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer h2 {
+            color: #ff7da4;
+        }
+
+        footer p {
+            color: #c8bac0;
+            margin-top: 8px;
+        }
+
+        .social {
+            display: flex;
+            gap: 15px;
+            font-size: 25px;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            nav ul {
+                display: none;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-content {
+                width: 100%;
+            }
+
+            .hero-content h1 {
+                font-size: 48px;
+            }
+
+            .hero-image {
+                width: 100%;
+                font-size: 170px;
+                margin-top: 30px;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .flavors {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+
+            .offer {
+                flex-direction: column;
+                text-align: center;
+                gap: 25px;
+            }
+        }
+
+        @media (max-width: 550px) {
+            .flavors {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+                font-size: 40px;
+            }
+
+            .section-title h2 {
+                font-size: 32px;
+            }
+
+            .offer {
+                margin-left: 5%;
+                margin-right: 5%;
+                padding: 35px 20px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">🍦 Frosty<span>Bliss</span></div>
+
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#flavors">Flavors</a></li>
+            <li><a href="#products">Menu</a></li>
+            <li><a href="#offers">Offers</a></li>
+        </ul>
+
+        <a href="#products" class="nav-btn">Order Now</a>
+    </nav>
+
+
+    <!-- Hero -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+            <small>🍨 Fresh • Creamy • Delicious</small>
+
+            <h1>
+                Happiness is a
+                <span>cup of ice cream.</span>
+            </h1>
+
+            <p>
+                Discover creamy handcrafted ice creams made with
+                premium ingredients, fresh fruits and lots of love.
+                Your perfect scoop is waiting for you!
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#products" class="primary-btn">Explore Flavors</a>
+                <a href="#offers" class="secondary-btn">View Offers</a>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            🍨
+        </div>
+
+    </section>
+
+
+    <!-- Flavors -->
+    <section class="section" id="flavors">
+
+        <div class="section-title">
+            <h2>Our Popular Flavors</h2>
+            <p>Pick your favorite flavor and enjoy every scoop.</p>
+        </div>
+
+        <div class="flavors">
+
+            <div class="flavor-card">
+                <div class="flavor-icon">🍓</div>
+                <h3>Strawberry</h3>
+                <p>Fresh strawberries blended into creamy goodness.</p>
+            </div>
+
+            <div class="flavor-card">
+                <div class="flavor-icon">🍫</div>
+                <h3>Chocolate</h3>
+                <p>Rich chocolate flavor for every chocolate lover.</p>
+            </div>
+
+            <div class="flavor-card">
+                <div class="flavor-icon">🥭</div>
+                <h3>Mango</h3>
+                <p>Sweet and refreshing mango made with real fruit.</p>
+            </div>
+
+            <div class="flavor-card">
+                <div class="flavor-icon">🍪</div>
+                <h3>Cookies & Cream</h3>
+                <p>Creamy vanilla ice cream loaded with cookie crunch.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Products -->
+    <section class="section" id="products">
+
+        <div class="section-title">
+            <h2>Best Sellers</h2>
+            <p>Our customers' favorite frozen treats.</p>
+        </div>
+
+        <div class="products">
+
+            <div class="product-card">
+                <div class="product-top">🍓</div>
+
+                <div class="product-info">
+                    <h3>Strawberry Bliss</h3>
+                    <div class="rating">★★★★★</div>
+                    <p>Fresh strawberry ice cream with real fruit pieces.</p>
+
+                    <div class="product-bottom">
+                        <div class="price">₹149</div>
+                        <button class="buy-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="product-card">
+                <div class="product-top">🍫</div>
+
+                <div class="product-info">
+                    <h3>Chocolate Dream</h3>
+                    <div class="rating">★★★★★</div>
+                    <p>Premium chocolate ice cream with chocolate chunks.</p>
+
+                    <div class="product-bottom">
+                        <div class="price">₹169</div>
+                        <button class="buy-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="product-card">
+                <div class="product-top">🥭</div>
+
+                <div class="product-info">
+                    <h3>Mango Magic</h3>
+                    <div class="rating">★★★★☆</div>
+                    <p>Refreshing Alphonso mango ice cream.</p>
+
+                    <div class="product-bottom">
+                        <div class="price">₹159</div>
+                        <button class="buy-btn">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Offer -->
+    <section class="offer" id="offers">
+
+        <div>
+            <h2>Sweet Deal! 🍦</h2>
+            <p>Buy 2 scoops and get 1 scoop absolutely FREE.</p>
+        </div>
+
+        <a href="#products" class="offer-btn">Grab the Deal</a>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <div>
+            <h2>🍦 FrostyBliss</h2>
+            <p>Making every day a little sweeter.</p>
+        </div>
+
+        <div class="social">
+            <span>📸</span>
+            <span>📘</span>
+            <span>🐦</span>
+        </div>
+
+        <p>© 2026 FrostyBliss</p>
+
+    </footer>
+
+</body>
+</html>

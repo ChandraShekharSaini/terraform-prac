@@ -64,3 +64,16 @@ resource "aws_instance" "public_2server_1a"{
   }
 }
 
+
+resource "aws_instance" "public_3server_1a"{
+  ami           = "ami-0c02fb55956c7d316"
+  instance_type = "t2.medium"
+  subnet_id     = aws_subnet.public_subnet-1a.id
+  security_groups = [aws_security_group.my_sg.id]
+
+  tags = {
+    Name = "public-server11-3a"
+  }
+}
+
+
